@@ -4,11 +4,11 @@ import os
 import asyncio
 from typing import Any
 
-@backoff.on_exception(backoff.expo, openai.error.RateLimitError)
+@backoff.on_exception(backoff.expo, Exception)
 def completions_with_backoff(**kwargs):
     return openai.Completion.create(**kwargs)
 
-@backoff.on_exception(backoff.expo, openai.error.RateLimitError)
+@backoff.on_exception(backoff.expo, Exception)
 def chat_completions_with_backoff(**kwargs):
     return openai.ChatCompletion.create(**kwargs)
 
